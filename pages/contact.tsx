@@ -1,64 +1,74 @@
-import type { NextPage } from "next";
-import { FaFile, FaGithub, FaLinkedin, FaMedium } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { IoLogoTableau } from "react-icons/io5";
-import { Section } from "../components";
+import { Layout } from '../components/Layout/Layout';
+import { 
+  Mail, 
+  Linkedin, 
+  Github, 
+  FileText, 
+  ExternalLink 
+} from 'lucide-react';
 
-const LINKS = [
+const CONTACT_LINKS = [
   {
-    icon: MdEmail,
-    link: "mailto:lisapatel1998@gmail.com",
+    icon: Mail,
+    label: "Email",
+    href: "mailto:lisapatel1998@gmail.com"
   },
   {
-    icon: FaGithub,
-    link: "https://github.com/LISAPATEL98",
+    icon: Linkedin,
+    label: "LinkedIn",
+    href: "https://linkedin.com/in/lisapatel98"
   },
   {
-    icon: FaLinkedin,
-    link: "https://www.linkedin.com/in/lisaapatel",
+    icon: Github,
+    label: "GitHub",
+    href: "https://github.com/LISAPATEL98"
   },
   {
-    icon: IoLogoTableau,
-    link: "https://public.tableau.com/app/profile/lisa7954#!/",
+    icon: ExternalLink,
+    label: "Blog",
+    href: "https://medium.com/@lisaapatel"
   },
   {
-    icon: FaMedium,
-    link: "https://lisaapatel.medium.com/",
-  },
-  {
-    icon: FaFile,
-    link: "https://drive.google.com/file/d/1ZMFkTSLvxA1lSpF5tMa0iZjD5kby_XI7/view?usp=sharing",
-  },
+    icon: FileText,
+    label: "Resume",
+    href: "/resume.pdf" // Update with actual resume path
+  }
 ];
 
-const Contact: NextPage = () => {
+export default function Contact() {
   return (
-    <div className="container">
-      <h2 className="mt-10 text-center text-2xl font-bold">Contact Me</h2>
-      <Section type="dark">
-        <p className="text-center">
-          I enjoy meeting new people and collaborating or even just talking over
-          some good coffee, so please feel free to reach out!
-        </p>
-        <div className="flex justify-center items-center mt-8">
-          {LINKS.map(({ link, icon }, i) => {
-            const Comp = icon;
-            return (
+    <Layout>
+      <div className="section-container">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 space-y-12">
+          {/* Header */}
+          <div className="space-y-4 text-center">
+            <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Let's Connect!</h1>
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+              I enjoy meeting new people and collaborating or even just talking over some good coffee, so please feel free to reach out!
+            </p>
+          </div>
+
+          {/* Social Links */}
+          <div className="flex flex-wrap justify-center gap-6 sm:gap-8">
+            {CONTACT_LINKS.map(({ icon: Icon, label, href }) => (
               <a
-                key={link}
-                href={link}
+                key={label}
+                href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mr-5 last:mr-0"
+                className="group flex flex-col items-center gap-2 min-w-[80px]"
               >
-                <Comp size={40} />
+                <div className="p-3 sm:p-4 rounded-full bg-secondary/30 backdrop-blur-sm border border-border/40 transition-all group-hover:scale-105 group-hover:border-border/60 group-hover:shadow-md">
+                  <Icon className="w-6 h-6 text-foreground transition-colors group-hover:text-foreground/80" strokeWidth={1.5} />
+                </div>
+                <span className="text-sm font-medium tracking-tight text-muted-foreground group-hover:text-foreground transition-colors">
+                  {label}
+                </span>
               </a>
-            );
-          })}
+            ))}
+          </div>
         </div>
-      </Section>
-    </div>
+      </div>
+    </Layout>
   );
-};
-
-export default Contact;
+}

@@ -1,21 +1,26 @@
-import "../styles/global.css";
+import "../styles/globals.css";
 import { ThemeProvider } from 'next-themes';
-
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { Layout } from "../components";
+import { Layout } from "../components/Layout/Layout";
 
-function MyApp({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <ThemeProvider attribute="class" defaultTheme="system">
+    <>
       <Head>
         <title>Lisa Patel</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </ThemeProvider>
+      <ThemeProvider
+        attribute="class"
+        defaultTheme="system"
+        enableSystem
+        disableTransitionOnChange
+      >
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </ThemeProvider>
+    </>
   );
 }
-
-export default MyApp;

@@ -1,86 +1,65 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, Badge, HoverCard, HoverCardContent, HoverCardTrigger } from "../ui";
-import { cn } from "../../lib/utils";
+import Image from 'next/image';
+import type { Project } from '../../types';
 
 interface ProjectCardProps {
-  title: string;
-  link?: string;
-  body?: string[];
-  img?: string;
-  tags?: string[];
-  className?: string;
-  children?: React.ReactNode;
+  project: Project;
 }
 
-export const ProjectCard: React.FC<ProjectCardProps> = ({
-  title,
-  link,
-  body,
-  img,
-  tags,
-  className = '',
-  children
-}) => {
+export function ProjectCard({ project }: ProjectCardProps) {
+  const isDataViz = project.tags.includes("Data Visualization");
+
   return (
-    <Card className={`group overflow-hidden transition-all hover:shadow-lg ${className}`}>
-      {img && (
-        <div className="relative h-48 overflow-hidden">
-          <img 
-            src={img} 
-            alt={title} 
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+    <a
+      href={project.link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group block bg-card rounded-lg border border-border/40 hover:border-border/60 transition-colors overflow-hidden"
+    >
+      {/* Preview Image for Data Viz */}
+      {isDataViz && project.image && (
+        <div className="aspect-[16/9] w-full overflow-hidden">
+          <Image
+            src={project.image}
+            alt={project.title}
+            width={600}
+            height={338}
+            className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
         </div>
       )}
-      <CardHeader>
-        <HoverCard>
-          <HoverCardTrigger asChild>
-            <h3 className="text-xl font-bold">
-              {link ? (
-                <a
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-primary transition-colors"
-                >
-                  {title}
-                </a>
-              ) : (
-                title
-              )}
-            </h3>
-          </HoverCardTrigger>
-          {link && (
-            <HoverCardContent className="w-80">
-              <div className="space-y-2">
-                <p className="text-sm text-muted-foreground">
-                  Click to view project details on GitHub
-                </p>
-              </div>
-            </HoverCardContent>
-          )}
-        </HoverCard>
-      </CardHeader>
-      <CardContent>
-        {tags && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {tags.map((tag) => (
-              <Badge key={tag} variant="secondary">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        )}
-        {body && (
-          <ul className="list-disc ml-4 space-y-2 text-muted-foreground">
-            {body.map((text, i) => (
-              <li key={i}>{text}</li>
+      
+      {/* Content */}
+      <div className="p-4 space-y-3">
+        <h3 className="text-lg font-semibold text-blue-500">
+          {project.title}
+        </h3>
+        
+        {Array.isArray(project.description) ? (
+          <ul className="list-disc space-y-2 ml-4 text-sm text-muted-foreground">
+            {project.description.map((item, i) => (
+              <li key={i} className={`${i === 0 ? 'font-medium list-none -ml-4' : ''}`}>
+                {item}
+              </li>
             ))}
           </ul>
+        ) : (
+          <p className="text-sm text-muted-foreground">
+            {project.description}
+          </p>
         )}
-        {children}
-      </CardContent>
-    </Card>
+
+        <div className="flex flex-wrap gap-1">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-2 py-0.5 text-xs text-muted-foreground bg-secondary rounded-md"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    </a>
   );
-}; 
+} 
