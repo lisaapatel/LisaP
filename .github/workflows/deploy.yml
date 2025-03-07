@@ -27,6 +27,13 @@ jobs:
           rm -f package-lock.json
           npm install
 
+      - name: Remove conflicting files
+        run: |
+          # Remove pages directory files that conflict with app directory
+          rm -f pages/index.tsx
+          rm -f pages/contact.tsx
+          rm -f pages/travel.tsx
+
       - name: Build
         run: npm run build
 

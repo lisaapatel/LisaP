@@ -1,29 +1,24 @@
 #!/bin/bash
 
-# Build the project
+# Make sure we're in the correct directory
+cd "$(dirname "$0")"
+
+# Build the site
 npm run build
 
-# Check if the build directory exists and cd into it
+# Create .nojekyll file (only if out directory exists)
 if [ -d "out" ]; then
-    cd out
-elif [ -d ".next/out" ]; then
-    cd .next/out
+  touch out/.nojekyll
 else
-    echo "Build directory not found"
-    exit 1
-fi
-
-# Check if the build was successful
-if [ $? -ne 0 ]; then
-  echo "Build failed"
+  echo "Error: 'out' directory not found after build"
   exit 1
 fi
 
-# Create or update .nojekyll file to bypass Jekyll processing
-touch out/.nojekyll
-
-echo "Build successful! Files ready in the 'out' directory"
-
+# Add and commit changes
 git add out/
-git commit -m "Deploy to GitHub Pages"
-git subtree push --prefix out origin gh-pages 
+git commit -m "Deploy updates to GitHub Pages"
+
+# Push to gh-pages branch
+git subtree push --prefix out origin gh-pages
+
+echo "Deployment complete!" 
