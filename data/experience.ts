@@ -7,15 +7,16 @@ export const EXPERIENCE: Experience[] = [
     location: "San Francisco, CA",
     period: "Jan 2024 – Present",
     description: [
-      "Driving high-impact product initiatives for a business that scaled from MVP to $1 billion in origination volume.",
-      "Leading the development of dispute resolution, cross-sell opportunities, and fraud prevention features to enhance user trust and retention.",
-      "Collaborating cross-functionally with legal, design, compliance, sales, and operations to ensure seamless feature rollouts.",
-      "Spearheading product analytics, optimizing key funnels, and leveraging insights from heatmaps and A/B testing to improve user engagement.",
-      "Managing refund workflows and identifying areas of improvement to streamline operations and reduce friction."
+      "Streamlined customer onboarding process by optimizing authentication flow, eliminating unnecessary email verification steps and integrating essential platform links, resulting in 35% faster signups",
+      "Worked on 0-1 comprehensive disputes flow, transforming the existing process by:\n- Developing a structured workflow with improved reliability and customer support\n- Creating detailed audit logs for enhanced transparency\n- Establishing clear documentation for investor insights\n- Streamlining compliance and troubleshooting processes",
+      "Developed critical self-service features to enhance customer experience, including hardship enrollment, payment date modification, auto-enrollment options, and interactive interest savings calculator",
+      "Led the development of cross-sell flow, defining targeted customer criteria and directing users to appropriate product solutions, improving product discovery and conversion",
+      "Collaborated with data science team to implement intelligent fraud detection rules, directing suspicious payment activities to agent review while maintaining frictionless experience for legitimate users",
+      "Managed executive reporting, providing critical insights into product performance and strategic opportunities that informed leadership decision-making"
     ]
   },
   {
-    title: "Product Analyst/APM",
+    title: "Associate PM/Product Analyst",
     company: "Upgrade, Inc.",
     location: "San Francisco, CA",
     period: "Aug 2022 – Dec 2023",
