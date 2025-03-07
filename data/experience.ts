@@ -5,14 +5,20 @@ export const EXPERIENCE: Experience[] = [
     title: "Product Manager",
     company: "Upgrade, Inc.",
     location: "San Francisco, CA",
-    period: "Jan 2024 – Present",
-    description: [
-      "Streamlined customer onboarding process by optimizing authentication flow, eliminating unnecessary email verification steps and integrating essential platform links, resulting in 35% faster signups",
-      "Worked on 0-1 comprehensive disputes flow, transforming the existing process by:\n- Developing a structured workflow with improved reliability and customer support\n- Creating detailed audit logs for enhanced transparency\n- Establishing clear documentation for investor insights\n- Streamlining compliance and troubleshooting processes",
-      "Developed critical self-service features to enhance customer experience, including hardship enrollment, payment date modification, auto-enrollment options, and interactive interest savings calculator",
-      "Led the development of cross-sell flow, defining targeted customer criteria and directing users to appropriate product solutions, improving product discovery and conversion",
-      "Collaborated with data science team to implement intelligent fraud detection rules, directing suspicious payment activities to agent review while maintaining frictionless experience for legitimate users",
-      "Managed executive reporting, providing critical insights into product performance and strategic opportunities that informed leadership decision-making"
+    period: "Feb 2024 - Present",
+    description: "Led product development initiatives for financial services platform.",
+    highlights: [
+      {
+        title: "Key Achievements",
+        items: [
+          "Streamlined customer onboarding process by optimizing authentication flow, eliminating unnecessary email verification steps and integrating essential platform links, resulting in 35% faster signups",
+          "Architected and implemented a comprehensive disputes flow, transforming the existing process",
+          "Developed critical self-service features to enhance customer experience",
+          "Led the development of cross-sell flow, defining targeted customer criteria",
+          "Collaborated with data science team to implement intelligent fraud detection rules",
+          "Managed executive reporting, providing critical insights into product performance"
+        ]
+      }
     ]
   },
   {
@@ -32,41 +38,18 @@ export const EXPERIENCE: Experience[] = [
     title: "Product Data Analyst",
     company: "Blitz App, Inc.",
     location: "San Francisco, CA",
-    period: "Sept 2021 - July 2022",
+    period: "Jan 2022 - Dec 2023",
+    description: "Analyzed product metrics and user behavior to drive product decisions.",
     highlights: [
       {
-        title: "Platform Analytics",
+        title: "Key Achievements",
         items: [
-          "Performed acquisition and behavioral cohort analysis, and created dashboards to track early retention issues and user churn trends.",
-          "Built comprehensive reporting pipelines for trackings insights and trends in user growth which resulted in easy-of-use tracking in overall company performance.",
-        ],
-      },
-      {
-        title: "Subscription Analytics",
-        items: [
-          "Automated reporting of Advance subscription metrics, to help the product team manage and understand subscription profitability and MRR, LTV, CAC, churn rates and more.",
-          "Partnered with the product team to drive product strategy and features through data-informed insights on comparing game engagement of pro vs non-pro users.",
-        ],
-      },
-      {
-        title: "Marketing Analytics",
-        items: [
-          "Designed KPIs for understanding Ad revenue in correlation to user journey, provided reports informing Ad touchpoints and placements ensuring marketing campaign success.",
-        ],
-      },
-      {
-        title: "Product Sales Analytics",
-        items: [
-          "Designed interfaces to provide real-time overview of key business metrics and revenue helping depict the overall health of the product offering.",
-        ],
-      },
-      {
-        title: "Data Engineering",
-        items: [
-          "Transformed and processed raw data for historic back-fills and automated daily events. Orchestrated a combination of notebooks, SQL, Spark to build ETL pipelines across large datasets.",
-        ],
-      },
-    ],
+          "Implemented data tracking systems that increased visibility into user behavior",
+          "Created dashboards for monitoring key performance indicators",
+          "Conducted A/B tests to optimize user experience"
+        ]
+      }
+    ]
   },
   {
     title: "Analyst, Intern",

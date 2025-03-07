@@ -1,3 +1,4 @@
+// This file should be removed or renamed to avoid conflicts
 import Link from 'next/link';
 import React from 'react';
 

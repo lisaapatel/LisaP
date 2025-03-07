@@ -6,60 +6,67 @@ interface ProjectCardProps {
   project: Project;
 }
 
-export function ProjectCard({ project }: ProjectCardProps) {
-  const isDataViz = project.tags.includes("Data Visualization");
-
+export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <a
-      href={project.link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group block bg-card rounded-lg border border-border/40 hover:border-border/60 transition-colors overflow-hidden"
-    >
-      {/* Preview Image for Data Viz */}
-      {isDataViz && project.image && (
-        <div className="aspect-[16/9] w-full overflow-hidden">
+    <div className="border border-gray-200 rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+      {project.image && (
+        <div className="relative h-48 w-full">
           <Image
             src={project.image}
             alt={project.title}
-            width={600}
-            height={338}
-            className="object-cover w-full h-full transition-transform duration-300 group-hover:scale-105"
+            layout="fill"
+            objectFit="cover"
+            unoptimized
           />
         </div>
       )}
-      
-      {/* Content */}
-      <div className="p-4 space-y-3">
-        <h3 className="text-lg font-semibold text-blue-500">
-          {project.title}
-        </h3>
+      <div className="p-6">
+        <h3 className="text-xl font-bold mb-2">{project.title}</h3>
         
-        {Array.isArray(project.description) ? (
-          <ul className="list-disc space-y-2 ml-4 text-sm text-muted-foreground">
-            {project.description.map((item, i) => (
-              <li key={i} className={`${i === 0 ? 'font-medium list-none -ml-4' : ''}`}>
-                {item}
-              </li>
+        {/* Handle description that can be either string or string[] */}
+        {typeof project.description === 'string' ? (
+          <p className="text-gray-700 mb-4">{project.description}</p>
+        ) : (
+          <ul className="list-disc pl-5 mb-4 space-y-2">
+            {project.description.map((item, index) => (
+              <li key={index} className="text-gray-700">{item}</li>
             ))}
           </ul>
-        ) : (
-          <p className="text-sm text-muted-foreground">
-            {project.description}
-          </p>
         )}
-
-        <div className="flex flex-wrap gap-1">
-          {project.tags.map((tag) => (
+        
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tags.map((tag, index) => (
             <span
-              key={tag}
-              className="px-2 py-0.5 text-xs text-muted-foreground bg-secondary rounded-md"
+              key={index}
+              className="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded"
             >
               {tag}
             </span>
           ))}
         </div>
+        <div className="flex space-x-4">
+          {project.link && (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              View Project
+            </a>
+          )}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-700 hover:underline"
+            >
+              GitHub
+            </a>
+          )}
+        </div>
       </div>
-    </a>
+    </div>
   );
 } 

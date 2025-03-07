@@ -1,3 +1,4 @@
+import React from 'react';
 import { Education } from '@/types';
 import { GraduationCap, Calendar, MapPin } from 'lucide-react';
 
@@ -6,9 +7,11 @@ interface EducationCardProps {
   isLast: boolean;
 }
 
-export const EducationCard = ({ education, isLast }: EducationCardProps) => {
+export default function EducationCard({ education, isLast }: EducationCardProps) {
+  const { degree, school, location, period, coursework, activities } = education;
+  
   return (
-    <div className="group relative">
+    <div className={`group relative ${isLast ? 'mb-0' : 'mb-8'}`}>
       {!isLast && (
         <div className="absolute left-8 top-16 bottom-0 w-px bg-border/40 group-hover:bg-border/60 transition-colors" />
       )}
@@ -22,20 +25,20 @@ export const EducationCard = ({ education, isLast }: EducationCardProps) => {
           <div className="space-y-3">
             <div>
               <h3 className="text-xl font-semibold tracking-tight mb-1">
-                {education.degree}
+                {degree}
               </h3>
               <p className="font-medium text-foreground/90">
-                {education.school}
+                {school}
               </p>
             </div>
             <div className="flex items-center gap-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-1.5">
                 <MapPin className="w-4 h-4" />
-                <span>{education.location}</span>
+                <span>{location}</span>
               </div>
               <div className="flex items-center gap-1.5">
                 <Calendar className="w-4 h-4" />
-                <span>{education.period}</span>
+                <span>{period}</span>
               </div>
             </div>
           </div>
@@ -49,7 +52,7 @@ export const EducationCard = ({ education, isLast }: EducationCardProps) => {
               Relevant Coursework
             </h4>
             <div className="flex flex-wrap gap-2">
-              {education.coursework.map((course, i) => (
+              {coursework.map((course, i) => (
                 <span
                   key={i}
                   className="px-3 py-1 rounded-full bg-secondary/40 border border-border/40 
@@ -63,13 +66,13 @@ export const EducationCard = ({ education, isLast }: EducationCardProps) => {
           </div>
 
           {/* Activities */}
-          {education.activities && (
+          {activities && activities.length > 0 && (
             <div className="space-y-3">
               <h4 className="text-sm font-medium text-foreground/80">
                 Activities & Achievements
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                {education.activities.map((activity, i) => (
+                {activities.map((activity, i) => (
                   <div
                     key={i}
                     className="flex items-center gap-2 text-muted-foreground"
@@ -85,4 +88,4 @@ export const EducationCard = ({ education, isLast }: EducationCardProps) => {
       </div>
     </div>
   );
-}; 
+} 

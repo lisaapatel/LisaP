@@ -1,14 +1,19 @@
 import React from 'react';
-import Navigation from '../components/Navigation';
+import { Layout } from '../../components/Layout/Layout';
 
-export default function TravelPage() {
+export default function Travel() {
   return (
-    <>
-      <Navigation />
-      <main className="min-h-screen p-8">
-        <h1 className="text-4xl font-bold mb-8">Travel</h1>
-        {/* Your travel content here */}
-      </main>
-    </>
+    <Layout>
+      <div className="section-container">
+        <div className="max-w-5xl mx-auto space-y-12 py-12">
+          <section className="space-y-6">
+            <h1 className="text-4xl font-bold">Travel Recommendations</h1>
+            <p className="text-xl">
+              Coming soon! I'll be sharing my favorite travel destinations and recommendations.
+            </p>
+          </section>
+        </div>
+      </div>
+    </Layout>
   );
 } 
