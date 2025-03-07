@@ -27,6 +27,13 @@ jobs:
           rm -f package-lock.json
           npm install
 
+      - name: Fix Layout Component
+        run: |
+          # Add "use client" directive to Layout component
+          sed -i '1s/^/"use client";\n\n/' components/Layout/Layout.tsx
+          # Update router import
+          sed -i 's/import { useRouter } from '\''next\/router'\'';/import { useRouter } from '\''next\/navigation'\'';/' components/Layout/Layout.tsx
+
       - name: Remove conflicting files
         run: |
           # Remove pages directory files that conflict with app directory
