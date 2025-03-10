@@ -1,3 +1,14 @@
+const isGithubActions = process.env.GITHUB_ACTIONS || false;
+
+let assetPrefix = '';
+let basePath = '';
+
+if (isGithubActions) {
+  const repo = process.env.LisaP.replace(/.*?\//, '');
+  assetPrefix = `/${repo}/`;
+  basePath = `/${repo}`;
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',  // Enables static exports
@@ -7,7 +18,7 @@ const nextConfig = {
     loaderFile: './src/lib/image-loader.js',
   },
   transpilePackages: ['next-themes'],
-  reactStrictMode: false,
+  reactStrictMode: false, // Try disabling strict mode temporarily
   eslint: {
     ignoreDuringBuilds: true,
   },
