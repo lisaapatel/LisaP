@@ -22,9 +22,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // GitHub Pages configuration - hardcoded for reliability
+  // Add GitHub Pages specific settings
   basePath: '/LisaP',
-  assetPrefix: '/LisaP/',
+  assetPrefix:  '/LisaP',
   trailingSlash: true,
 }
 

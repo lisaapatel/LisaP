@@ -12,10 +12,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "deploy": "gh-pages -d out",
-    "build:github": "NEXT_PUBLIC_BASE_PATH=/LisaP next build",
-    "verify-paths": "node scripts/verify-paths.js",
-    "deploy:main": "next build && cp -r out/* ."
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "@radix-ui/react-hover-card": "1.0.6",
