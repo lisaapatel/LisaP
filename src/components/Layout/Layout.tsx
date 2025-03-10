@@ -34,7 +34,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
       <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur">
         <div className="container flex h-16 items-center justify-between px-8">
           <div className="flex items-center gap-8">
-            <Link href="/" className="text-2xl font-bold ml-4">
+            <Link href="/" as={getBasePath('/')} className="text-2xl font-bold ml-4">
               Lisa Patel
             </Link>
             <nav className="hidden md:flex gap-8 ml-8">
@@ -44,6 +44,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
                   <Link
                     key={item.path}
                     href={item.path}
+                    as={getBasePath(item.path)}
                     className={clsx(
                       'transition-colors hover:text-foreground/80',
                       isActive ? 'text-foreground' : 'text-foreground/60'
