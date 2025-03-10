@@ -1,54 +1,30 @@
-name: Deploy to Github Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
-
-permissions:
-  contents: write
+    branches:
+      - main  # or master, depending on your default branch
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v3
-
+      - uses: actions/checkout@v3
+      
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-          cache: 'npm'
 
-      - name: Clean install dependencies
-        run: |
-          rm -rf node_modules
-          rm -f package-lock.json
-          npm install
+      - name: Install dependencies
+        run: npm install
 
-      - name: Fix Layout Component
-        run: |
-          # Add "use client" directive to Layout component
-          sed -i '1s/^/"use client";\n\n/' components/Layout/Layout.tsx
-          # Update router import
-          sed -i 's/import { useRouter } from '\''next\/router'\'';/import { useRouter } from '\''next\/navigation'\'';/' components/Layout/Layout.tsx
+      - name: Build website
+        run: npm run build && npm run export
 
-      - name: Remove conflicting files
-        run: |
-          # Remove pages directory files that conflict with app directory
-          rm -f pages/index.tsx
-          rm -f pages/contact.tsx
-          rm -f pages/travel.tsx
-
-      - name: Build
-        run: npm run build
-
-      - name: Add .nojekyll file
-        run: touch ./out/.nojekyll
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          folder: out
-          branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out 

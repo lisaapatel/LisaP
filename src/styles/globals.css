@@ -1,0 +1,116 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light Theme (Notion-inspired) */
+  --background: 255 255 255;    /* #FFFFFF */
+  --foreground: 26 26 26;       /* #1A1A1A */
+  --card: 250 250 249;          /* #FAFAF9 */
+  --card-foreground: 26 26 26;  /* #1A1A1A */
+  --primary: 45 126 247;        /* #2D7EF7 */
+  --primary-foreground: 255 255 255;
+  --secondary: 250 250 249;     /* #FAFAF9 */
+  --secondary-foreground: 102 102 102;  /* #666666 */
+  --muted: 250 250 249;         /* #FAFAF9 */
+  --muted-foreground: 102 102 102; /* #666666 */
+  --border: 229 229 229;        /* #E5E5E5 */
+  --ring: 45 126 247;           /* #2D7EF7 */
+}
+
+.dark {
+  /* Dark Theme (Midnight Blue) */
+  --background: 10 25 47;       /* #0A192F */
+  --foreground: 255 255 255;    /* #FFFFFF */
+  --card: 17 34 64;             /* #112240 */
+  --card-foreground: 255 255 255;
+  --primary: 78 159 255;        /* #4E9FFF */
+  --primary-foreground: 255 255 255;
+  --secondary: 17 34 64;        /* #112240 */
+  --secondary-foreground: 176 190 197;  /* #B0BEC5 */
+  --muted: 17 34 64;            /* #112240 */
+  --muted-foreground: 176 190 197;  /* #B0BEC5 */
+  --border: 28 42 58;           /* #1C2A3A */
+  --ring: 78 159 255;           /* #4E9FFF */
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  * {
+    @apply border-border;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold bg-gradient-to-r 
+           from-[rgb(var(--foreground))] via-[rgba(var(--foreground),0.9)] to-[rgba(var(--foreground),0.7)] 
+           bg-clip-text text-transparent;
+  }
+
+  .card {
+    @apply relative overflow-hidden rounded-xl border 
+           border-[rgba(var(--border),0.5)] bg-card p-6 
+           transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px];
+  }
+
+  .experience-card {
+    @apply relative rounded-xl transition-all duration-300 hover:shadow-lg;
+  }
+
+  .link {
+    @apply relative text-primary hover:text-[rgba(var(--primary),0.8)] transition-colors duration-200
+           after:absolute after:bottom-0 after:left-0 after:w-full after:h-px 
+           after:origin-right after:scale-x-0 after:bg-[rgba(var(--primary),0.5)]
+           after:transition-transform after:duration-300
+           hover:after:origin-left hover:after:scale-x-100;
+  }
+
+  .btn {
+    @apply relative px-4 py-2 rounded-lg font-medium transition-all duration-200
+           hover:translate-y-[-2px] active:translate-y-0;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-[rgba(var(--primary),0.9)]
+           hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-[rgba(var(--secondary),0.8)];
+  }
+
+  .img-rounded {
+    @apply rounded-xl overflow-hidden;
+  }
+
+  .prose-notion {
+    @apply text-base text-muted-foreground space-y-4 leading-relaxed;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .fade-in {
+    @apply animate-[fadeIn_0.5s_ease-out_forwards];
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

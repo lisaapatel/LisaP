@@ -1,5 +1,5 @@
 import React from 'react';
-import { Education } from '@/types';
+import { Education } from '../../types';
 import { GraduationCap, Calendar, MapPin } from 'lucide-react';
 
 interface EducationCardProps {

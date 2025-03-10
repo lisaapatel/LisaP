@@ -25,4 +25,15 @@ export interface Project {
   image?: string;
   tags: string[];
   link: string;
-} 
+}
+
+export interface EducationItem {
+  school: string;
+  degree: string;
+  location: string;
+  duration: string;
+  description: string[];
+  coursework?: string[];
+}
+
+// Other types can be added here as needed 
