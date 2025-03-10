@@ -1,8 +1,8 @@
 import type { FC, ReactNode } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { cn } from '../../lib/utils';
+import { cn, getBasePath } from '../../lib/utils';
 import { ThemeToggle } from './ThemeToggle';
 import { Menu, X } from 'lucide-react';
 import clsx from 'clsx';
@@ -22,6 +22,11 @@ interface LayoutProps {
 export const Layout: FC<LayoutProps> = ({ children }) => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  useEffect(() => {
+    console.log('Base Path:', process.env.NEXT_PUBLIC_BASE_PATH);
+    console.log('Example path:', getBasePath('/styles/globals.css'));
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
